@@ -1,0 +1,19 @@
+{
+  "name": "jorgielyn.iot.github.io",
+  "version": "1.0.0",
+  "description": "midterm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgielyn/jorgielyn.iot.github.io.git"
+  },
+  "author": "jorgielyn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgielyn/jorgielyn.iot.github.io/issues"
+  },
+  "homepage": "https://github.com/jorgielyn/jorgielynt.iot.github.io#readme"
+}

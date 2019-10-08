@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MQTT</title>
+    <!-- add icon link -->
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNjJRSGZVgDSFF0KyW6lDBH6Ebd0uHFkwxz6bNF1erWlQqQ4ZF" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
+    <script src="scripts/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        button {
+            width: 120px;
+        }
+
+        .card-deck {
+            margin-top: 50px;
+        }
+
+        table {
+            padding-block-start: 10px;
+        }
+
+        .my-custom-scrollbar {
+            position: relative;
+            height: 400px;
+            overflow: auto;
+        }
+
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="scripts/browserMqtt.js"></script>
+    <script src="scripts/controller.js"></script>
+
+    <div class="container-fluid" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNjJRSGZVgDSFF0KyW6lDBH6Ebd0uHFkwxz6bNF1erWlQqQ4ZF);background-size: 40%">
+        <strong style="margin-left: 5%;font-family: Impact;font-size: 80px;color: rgb(62, 95, 241)">MQTT</strong>
+        <h1 style="margin-left: 5%">My MQTT Web App</h1>
+    </div>
+    <hr>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="card-deck">
+
+
+            <div class="card" style="background-color: #aa38f7;border-radius: 3%">
+                <div class="card-body text-center">
+                    <h2>IOT FAN SWITCH</h2>
+
+                    <h4 id="status">The device is currently turned off</h4>
+                    <button id="one" class="btn btn-outline-primary">1</button>
+                    <button id="two" class="btn btn-outline-primary">2</button>
+                    <button id="three" class="btn btn-outline-primary">3</button>
+                    <button id="off" class="btn btn-outline-danger">OFF</button>
+              
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <hr>
+    <hr>
+    <br><br>
+</body>
+<script src="scripts/browserMqtt.js"></script>
+<script src="scripts/moment.js"></script>
+<script>
+    var connect = "wss://test.mosquitto.org:8081/mqtt";
+	client = mqtt.connect(connect);
+    
+    $(document).ready(function(){
+        $("#one").click(function(e){
+            e.preventDefault();    
+            var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+            var topic = 'iran/fan/status';
+            var payload = 'Turned On: ' +time
+            client.publish(topic, payload);
+            $("#status").html("The fan is currently turned at 1");
+        })
+        $("#two").click(function(e){
+            e.preventDefault();    
+            var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+            var topic = 'iran/fan/status';
+            var payload = 'Turned On: ' +time
+            client.publish(topic, payload);
+            $("#status").html("The fan is currently turned at 2");
+        })
+        $("#three").click(function(e){
+            e.preventDefault();    
+            var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+            var topic = 'iran/fan/status';
+            var payload = 'Turned On: ' +time
+            client.publish(topic, payload);
+            $("#status").html("The fan is currently turned at 3");
+        })
+        $("#off").click(function(e){
+            e.preventDefault();
+            var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+            var topic = 'iran/fan/status';
+            var payload = 'Turned Off: ' +time
+            client.publish(topic, payload);
+            $("#status").html("The fan is currently turned off");
+        })
+    })
+</script>
+
+
+</html>
